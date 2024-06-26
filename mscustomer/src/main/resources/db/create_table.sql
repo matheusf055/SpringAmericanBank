@@ -1,4 +1,4 @@
-CREATE TABLE customer (
+CREATE TABLE IF NOT EXISTS customer (
                           ID INT AUTO_INCREMENT PRIMARY KEY,
                           CPF VARCHAR(14) NOT NULL UNIQUE,
                           NAME VARCHAR(100) NOT NULL,

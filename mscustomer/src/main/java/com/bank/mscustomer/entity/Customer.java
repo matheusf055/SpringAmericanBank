@@ -1,5 +1,9 @@
 package com.bank.mscustomer.entity;
 
+import com.bank.mscustomer.config.CustomLocalDateDeserializer;
+import com.bank.mscustomer.config.CustomLocalDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -28,6 +32,8 @@ public class Customer {
     private String gender;
 
     @NotNull
+    @JsonDeserialize(using = CustomLocalDateDeserializer.class)
+    @JsonSerialize(using = CustomLocalDateSerializer.class)
     private LocalDate birthdate;
 
     @NotBlank
