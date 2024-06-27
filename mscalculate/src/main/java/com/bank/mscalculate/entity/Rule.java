@@ -2,10 +2,12 @@ package com.bank.mscalculate.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 @Entity
-@Table(name = "calculate")
-public class Calculator {
+@Table(name = "rule")
+@NoArgsConstructor @AllArgsConstructor @Data
+public class Rule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,5 @@ public class Calculator {
     @NotBlank
     private String category;
 
-    @NotBlank
     private int parity;
 }

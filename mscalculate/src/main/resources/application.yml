@@ -13,8 +13,8 @@ spring:
     hibernate:
       dl-auto: update
 
-  server:
-    port: 0
+server:
+  port: 0
 
 eureka:
   client:

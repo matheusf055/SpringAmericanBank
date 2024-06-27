@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerService {
+public class CustomerServices {
 
     private final CustomerRepository repository;
 
@@ -34,7 +34,7 @@ public class CustomerService {
             updatedCustomer.setId(id);
             return repository.save(updatedCustomer);
         } else {
-            throw new NotFoundException("Customer not found with id " + id);
+            throw new NotFoundException("Customer not found with id: " + id);
         }
     }
 
