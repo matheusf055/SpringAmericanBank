@@ -15,6 +15,14 @@ public class RuleServices {
 
     private final RuleRepository repository;
 
+    public int calculatePoints(Long categoryId, double value) {
+        Optional<Rule> ruleOptional = repository.findById(categoryId);
+
+        int parity = ruleOptional.map(Rule::getParity).orElse(1);
+
+        return (int) (value * parity);
+    }
+
     public Rule save(Rule rule){
         return repository.save(rule);
     }

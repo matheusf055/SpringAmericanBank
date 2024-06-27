@@ -1,11 +1,15 @@
 package com.bank.mscalculate.controller;
 
+import com.bank.mscalculate.dto.CalculateRequestDTO;
+import com.bank.mscalculate.dto.CalculateResponseDTO;
 import com.bank.mscalculate.dto.RuleRequestDTO;
 import com.bank.mscalculate.dto.RuleResponseDTO;
 import com.bank.mscalculate.dto.mapper.RuleMapperService;
 import com.bank.mscalculate.entity.Rule;
 import com.bank.mscalculate.services.RuleServices;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +23,13 @@ public class RuleController {
 
     private final RuleServices ruleServices;
     private final RuleMapperService ruleMapperService;
+
+    @PostMapping("/calculate")
+    public ResponseEntity<CalculateResponseDTO> calculatePoints(@Valid @RequestBody CalculateRequestDTO requestDTO){
+        int totalPoints = ruleServices.calculatePoints(requestDTO.getCategoryId(), requestDTO.getValue());
+        CalculateResponseDTO responseDTO = new CalculateResponseDTO(totalPoints);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
 
     @PostMapping("/rules")
     public ResponseEntity<RuleResponseDTO> create(@RequestBody RuleRequestDTO requestDTO){
