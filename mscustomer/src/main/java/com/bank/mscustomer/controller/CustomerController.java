@@ -63,8 +63,7 @@ public class CustomerController {
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-            }
-    )
+            })
     public ResponseEntity<CustomerResponseDTO> findById(@PathVariable Long id){
         return customerServices.findById(id)
                 .map(customer -> ResponseEntity.ok(customerMapperService.toResposenDTO(customer)))
@@ -79,15 +78,13 @@ public class CustomerController {
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-            }
-    )
+            })
     public ResponseEntity<CustomerResponseDTO> update(@PathVariable Long id, @RequestBody CustomerRequestDTO customerRequestDTO){
         Customer customer = customerMapperService.toEntity(customerRequestDTO);
         return ResponseEntity.ok(customerMapperService.toResposenDTO(customerServices.update(id, customer)));
     }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Deletes a customer", description = "Deletes a customer", tags = {"Customers"}, responses = {
+    @DeleteMapping("/{id}")@Operation(summary = "Deletes a customer", description = "Deletes a customer", tags = {"Customers"}, responses = {
             @ApiResponse(description = "No content", responseCode = "204", content = @Content),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),

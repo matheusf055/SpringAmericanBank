@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Customer")
+                        .title("Payment")
                         .version("v1")
                         .termsOfService("")
                         .license(new License().name("Apache 2.0")));
