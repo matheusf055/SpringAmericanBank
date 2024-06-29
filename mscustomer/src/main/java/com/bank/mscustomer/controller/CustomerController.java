@@ -56,7 +56,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Finds a customers", description = "Finds a customers", tags = {"Customers"}, responses = {
+    @Operation(summary = "Finds a customer", description = "Finds a customer", tags = {"Customers"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200", content = @Content),
             @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
