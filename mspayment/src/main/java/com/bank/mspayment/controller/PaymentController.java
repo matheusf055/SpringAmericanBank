@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/payments")
 @RequiredArgsConstructor
 public class PaymentController {
 
@@ -35,7 +35,7 @@ public class PaymentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentResponse);
     }
 
-    @GetMapping("/payments/{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Finds a payment", description = "Finds a payment", tags = {"Payment"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200", content = @Content),
             @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
