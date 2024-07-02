@@ -4,6 +4,7 @@ import com.bank.mscustomer.dto.CustomerRequestDTO;
 import com.bank.mscustomer.dto.CustomerResponseDTO;
 import com.bank.mscustomer.dto.mapper.CustomerMapperService;
 import com.bank.mscustomer.entity.Customer;
+import com.bank.mscustomer.services.AwsS3Service;
 import com.bank.mscustomer.services.CustomerServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,9 +12,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +28,10 @@ public class CustomerController {
 
     private final CustomerServices customerServices;
     private final CustomerMapperService customerMapperService;
+    private final AwsS3Service awsS3Service;
+
+    @Value("${aws.s3.bucket-name}")
+    private String bucketName;
 
     @PostMapping
     @Operation(summary = "Adds a customer", description = "Adds a customer", tags = {"Customers"}, responses = {
@@ -33,8 +40,15 @@ public class CustomerController {
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
-    public ResponseEntity<CustomerResponseDTO> create(@Valid @RequestBody CustomerRequestDTO requestDTO){
+    public ResponseEntity<CustomerResponseDTO> create(@Valid @RequestBody CustomerRequestDTO requestDTO) throws IOException {
         Customer customer = customerMapperService.toEntity(requestDTO);
+
+        if (requestDTO.getPhoto() != null && !requestDTO.getPhoto().isEmpty()) {
+            String key = "photos/" + customer.getId() + ".jpg";
+            awsS3Service.uploadBase64Photo(requestDTO.getPhoto(), key);
+            customer.setUrlPhoto("https://s3.amazonaws.com/" + bucketName + "/" + key);
+        }
+
         Customer saved = customerServices.save(customer);
         CustomerResponseDTO responseDTO = customerMapperService.toResposenDTO(saved);
         return ResponseEntity.ok(responseDTO);

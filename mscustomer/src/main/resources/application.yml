@@ -29,3 +29,10 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value} }
 
+aws:
+  region: us-west-1
+  s3:
+    bucket-name: american-bank-bucket
+    access-key: ASIA47CRYHBAHXR76NSN
+    secret-key: Woq9rI18c1VME5KGeyI5NGUTmx9rVVKovHfzhhgJ
+    sessionToken: IQoJb3JpZ2luX2VjEL///////////wEaCXVzLWVhc3QtMSJHMEUCIQC+MzFTkeZUI56NrjPLwaxL7DTGB48MN2dCSs+d0TkRxAIgOJ+GsTO+AwCNiKOJkKheuOfu2NWoD3if7729cbW8GTcqnwMIdxAAGgw4OTEzNzcxNzA0OTYiDEyaafMX/F1/ahl/DCr8AguIbDG+PFuKWV91lU5ewLd9w1BIUjNdJzJkamUmV7U54dxznRdNZCxPhM9jnyljqCeJubvYg/bpMOl3CqeyfeanGABVNlPHeNwM6hN8oeIHrTMwcUMMHmnAIDM7+C2eHY5r9d03BaMx+B4VraUzfgaY0dVK1EI2iPoJu0RvecozXB2K36BEq9GqV1CrK2SvGPiP7mXS0nzvQdWPthhu7Fv5J7KmVhyn6R/5YhGXd6WLBzD6j05mOzKevxdNW55xW0vgET2X1oV/xrp1iwHclEdgJeHjRvFAEhpj8jn1f84JgXFUSUqO1ymrnYKldHKq/SJ01sP/4vuaicv5BNlisDIG0/wxJaYm9fonCuxyT9Nv5dHR//gFJPSFHKwGLHRVDrSSxvCAFN1+le3pa1jLCe2A6W58y6+vxle1UHRlxMuhjkhEjgTQrHej72mkurTHkgD16i7fYbKjYvlwSCyT/7n7iO8TPNWq6WWhndXeUdODkY3iFVTDYvtcmaf0MOGUkLQGOqYBCu77S3QwBd3PxGFQsBEs/oTkmb3jLNQGSymQofIyIwaU5jXTAJDWNZhTREEwT3xuqp2ZfiUQkRlckG/XGkGC6x5h5lCHcSHLAQe9Wg/td/MxKwRFXdNA1vmBXilRYHlaRCZCT/4qU8B7ce1cC+8xFbak51qan9I3RoC0yN7wuqHCh8/f//RC0XWqVw+v/DJ1RIOrzeKST26KK1f9cAH5dXYrswC0og==
