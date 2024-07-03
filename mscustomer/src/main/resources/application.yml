@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: mscustomer
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/american_bank?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value} }
+
+aws:
+  region: us-west-1
+  s3:
+    bucket-name: american-bank-bucket
+    access-key: ASIA47CRYHBAGRLEITOF
+    secret-key: fRiuS+doSj1zn+VifWz7j6XZQgDLIVrrvAtOglAR
+    sessionToken: IQoJb3JpZ2luX2VjEN3//////////wEaCXVzLWVhc3QtMSJHMEUCIH3AfB7GvDn0WBqRH7S5p06YxdEjFBTbnmlgsBreegOdAiEAlvRweqmAw5E/g/x8dV7vcFts0SNAn98wKhNIG+u+fLcqqAMIlv//////////ARAAGgw4OTEzNzcxNzA0OTYiDNk+3qHQv9/lDgkLfSr8Ar3hHO1qpPeL/iSt8C5f+95KHYE3dU9ilO7leNOi/xCo0p9rkmZDyeV4hUJlvbgg6+qG6SImhfNhbVIkXC/urQiFAIKuxmfCaiNCTybsrN3gc/Ixn4EHdlgWjqJtsYC+vUHqnEtrrPMpy+o2QWSpEvfP5nC2bZAuyylR4V5/K/fJJssFImtsKV6nIwXPvu5Oe0QNtUoPTm85sbKI06crgxa49b/PqY9le2zQlMyRZNDiGAgGcSdU+n5+6rBkwAJJC4rKybpztQL5Djpf1z9WtE5i9i1sX2xi0hXu8YEKwt/aL4W5drBLJ1cM96KZNQOYeL1XQ/qpTIGcINFWejMvkctxMzLvqzMVVNs7aKZVuQexD36gE4mpBmQ3ET0vW6ZtHWiO0NBVwopTxvqGDH8XpNc4jtdDDdSvQ3/JvSZR2HyG9us4CHkWt7LyM+0Dk8J0MXZ0v7SBGWfFPuemACbEeXvo7BDUNJZF6gVnduFMU/SBFcb7O0dPxaoMKst2MMDplrQGOqYBIAR8yz0GCFz/uu6ZBiM1Sljn1E0jCcVjYGu3F0Nu8hjfXnAzF765ViTXldPpdXzOTq0q15HA6ytWUAaFsPpcG2DAuC1/2M/+/ExisMqSq7HmxkJ1MoVjXPHaukG73hBKdxVMIG+dxedWogRD3nRQ9u5BwL4OUOZSp/gtgWDnbvfmVNQ3Ce9U5LpN4dbBtZ9wRJtsWPU3g7pIfX5n6nuDqNJVKyqqNQ==
+
+mq:
+  queues:
+    update-points: update-points
