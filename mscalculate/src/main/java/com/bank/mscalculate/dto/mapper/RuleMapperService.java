@@ -1,7 +1,7 @@
 package com.bank.mscalculate.dto.mapper;
 
-import com.bank.mscalculate.dto.RuleRequestDTO;
-import com.bank.mscalculate.dto.RuleResponseDTO;
+import com.bank.mscalculate.dto.ruledto.RuleRequestDTO;
+import com.bank.mscalculate.dto.ruledto.RuleResponseDTO;
 import com.bank.mscalculate.entity.Rule;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

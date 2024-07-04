@@ -1,4 +1,4 @@
-package com.bank.mscustomer.config;
+package com.bank.mscalculate.config.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Customer")
+                        .title("Calculate")
                         .version("v1")
                         .termsOfService("")
                         .license(new License().name("Apache 2.0")));

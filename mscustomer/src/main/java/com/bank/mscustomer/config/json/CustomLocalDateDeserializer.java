@@ -1,4 +1,4 @@
-package com.bank.mscustomer.config;
+package com.bank.mscustomer.config.json;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

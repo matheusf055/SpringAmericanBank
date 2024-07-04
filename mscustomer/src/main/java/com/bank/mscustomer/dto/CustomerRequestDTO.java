@@ -1,7 +1,7 @@
 package com.bank.mscustomer.dto;
 
-import com.bank.mscustomer.config.CustomLocalDateDeserializer;
-import com.bank.mscustomer.config.CustomLocalDateSerializer;
+import com.bank.mscustomer.config.json.CustomLocalDateDeserializer;
+import com.bank.mscustomer.config.json.CustomLocalDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.*;

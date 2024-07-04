@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.bank.mscalculate.controller.RuleController;
-import com.bank.mscalculate.dto.CalculateRequestDTO;
+import com.bank.mscalculate.dto.calculatedto.CalculateRequestDTO;
 import com.bank.mscalculate.dto.mapper.RuleMapperService;
 import com.bank.mscalculate.entity.Rule;
 import com.bank.mscalculate.services.RuleServices;

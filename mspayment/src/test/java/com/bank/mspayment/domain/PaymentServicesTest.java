@@ -1,13 +1,13 @@
 package com.bank.mspayment.domain;
 
-import com.bank.mspayment.config.CalculateServicesClient;
+import com.bank.mspayment.config.openfeing.CalculateServicesClient;
 import com.bank.mspayment.dto.calculatedto.CalculateRequestDTO;
 import com.bank.mspayment.dto.calculatedto.CalculateResponseDTO;
 import com.bank.mspayment.dto.paymentdto.PaymentRequestDTO;
 import com.bank.mspayment.dto.paymentdto.PaymentResponseDTO;
 import com.bank.mspayment.entity.Payment;
 import com.bank.mspayment.repository.PaymentRepository;
-import com.bank.mspayment.services.PaymentService;
+import com.bank.mspayment.services.PaymentServices;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,10 +25,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PaymentServiceTest {
+public class PaymentServicesTest {
 
     @InjectMocks
-    private PaymentService paymentService;
+    private PaymentServices paymentServices;
 
     @Mock
     private CalculateServicesClient calculateServiceClient;
@@ -53,7 +53,7 @@ public class PaymentServiceTest {
 
         when(calculateServiceClient.calculatePoints(any(CalculateRequestDTO.class))).thenReturn(ResponseEntity.ok(calculateResponseDTO));
 
-        PaymentResponseDTO responseDTO = paymentService.processPayment(requestDTO);
+        PaymentResponseDTO responseDTO = paymentServices.processPayment(requestDTO);
 
         assertThat(responseDTO.getCustomerId()).isEqualTo(requestDTO.getCustomerId());
         assertThat(responseDTO.getPoints()).isEqualTo(calculateResponseDTO.getTotal());
@@ -68,7 +68,7 @@ public class PaymentServiceTest {
 
         when(paymentRepository.findById(paymentId.toString())).thenReturn(Optional.of(payment));
 
-        Optional<Payment> foundPayment = paymentService.findById(paymentId);
+        Optional<Payment> foundPayment = paymentServices.findById(paymentId);
 
         assertThat(foundPayment).isPresent();
         assertThat(foundPayment.get().getId()).isEqualTo(paymentId);
@@ -81,7 +81,7 @@ public class PaymentServiceTest {
 
         when(paymentRepository.findById(nonExistingId.toString())).thenReturn(Optional.empty());
 
-        Optional<Payment> foundPayment = paymentService.findById(nonExistingId);
+        Optional<Payment> foundPayment = paymentServices.findById(nonExistingId);
 
         assertThat(foundPayment).isEmpty();
         verify(paymentRepository, times(1)).findById(nonExistingId.toString());

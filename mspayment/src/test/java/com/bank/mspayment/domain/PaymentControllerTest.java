@@ -5,7 +5,7 @@ import com.bank.mspayment.dto.mapper.PaymentMapperService;
 import com.bank.mspayment.dto.paymentdto.PaymentRequestDTO;
 import com.bank.mspayment.dto.paymentdto.PaymentResponseDTO;
 import com.bank.mspayment.entity.Payment;
-import com.bank.mspayment.services.PaymentService;
+import com.bank.mspayment.services.PaymentServices;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +29,7 @@ public class PaymentControllerTest {
     private PaymentController paymentController;
 
     @Mock
-    private PaymentService paymentService;
+    private PaymentServices paymentServices;
 
     @Mock
     private PaymentMapperService paymentMapperService;
@@ -39,7 +39,7 @@ public class PaymentControllerTest {
         PaymentRequestDTO requestDTO = new PaymentRequestDTO(1L, 2L, 100.0);
         PaymentResponseDTO responseDTO = new PaymentResponseDTO(1L, 200); // Exemplo de pontos calculados
 
-        when(paymentService.processPayment(any(PaymentRequestDTO.class))).thenReturn(responseDTO);
+        when(paymentServices.processPayment(any(PaymentRequestDTO.class))).thenReturn(responseDTO);
 
         ResponseEntity<PaymentResponseDTO> responseEntity = paymentController.processPayment(requestDTO);
 
@@ -53,7 +53,7 @@ public class PaymentControllerTest {
         Payment payment = new Payment(paymentId, 1L, 2L, 100.0, LocalDateTime.now());
         PaymentResponseDTO responseDTO = new PaymentResponseDTO(payment.getCustomerId(), 200); // Exemplo de pontos calculados
 
-        when(paymentService.findById(paymentId)).thenReturn(Optional.of(payment));
+        when(paymentServices.findById(paymentId)).thenReturn(Optional.of(payment));
         when(paymentMapperService.toResponseDTO(payment)).thenReturn(responseDTO);
 
         ResponseEntity<PaymentResponseDTO> responseEntity = paymentController.findById(paymentId);
@@ -66,7 +66,7 @@ public class PaymentControllerTest {
     public void findById_NonExistingId_ReturnsNotFound() {
         UUID nonExistingId = UUID.randomUUID();
 
-        when(paymentService.findById(nonExistingId)).thenReturn(Optional.empty());
+        when(paymentServices.findById(nonExistingId)).thenReturn(Optional.empty());
 
         ResponseEntity<PaymentResponseDTO> responseEntity = paymentController.findById(nonExistingId);
 

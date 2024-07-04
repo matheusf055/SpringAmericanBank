@@ -1,4 +1,4 @@
-package com.bank.mscalculate.dto;
+package com.bank.mscalculate.dto.ruledto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

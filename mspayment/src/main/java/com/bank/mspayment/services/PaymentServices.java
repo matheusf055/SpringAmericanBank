@@ -1,7 +1,7 @@
 package com.bank.mspayment.services;
 
-import com.bank.mspayment.config.CalculateServicesClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bank.mspayment.config.openfeing.CalculateServicesClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,19 +12,23 @@ import com.bank.mspayment.dto.paymentdto.PaymentResponseDTO;
 import com.bank.mspayment.entity.Payment;
 import com.bank.mspayment.repository.PaymentRepository;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class PaymentService {
+@RequiredArgsConstructor
+public class PaymentServices {
 
     private final CalculateServicesClient calculateServiceClient;
     private final PaymentRepository paymentRepository;
 
-    @Autowired
-    public PaymentService(CalculateServicesClient calculateServiceClient, PaymentRepository paymentRepository) {
-        this.calculateServiceClient = calculateServiceClient;
-        this.paymentRepository = paymentRepository;
+    public Optional<Payment> findById(UUID id){
+        return paymentRepository.findById(id);
+    }
+
+    public List<Payment> findByCustomerId(Long customerId) {
+        return paymentRepository.findByCustomerId(customerId);
     }
 
     @Transactional
@@ -48,11 +52,6 @@ public class PaymentService {
 
         int totalPoints = calculateResponse.getTotal();
 
-
         return new PaymentResponseDTO(paymentRequest.getCustomerId(), totalPoints);
-    }
-
-    public Optional<Payment> findById(UUID id){
-        return paymentRepository.findById(String.valueOf(id));
     }
 }

@@ -1,4 +1,4 @@
-package com.bank.mspayment.config;
+package com.bank.mspayment.config.openfeing;
 
 import com.bank.mspayment.dto.calculatedto.CalculateRequestDTO;
 import com.bank.mspayment.dto.calculatedto.CalculateResponseDTO;

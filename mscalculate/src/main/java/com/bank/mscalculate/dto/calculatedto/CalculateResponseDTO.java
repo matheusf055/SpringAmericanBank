@@ -1,4 +1,4 @@
-package com.bank.mscalculate.dto;
+package com.bank.mscalculate.dto.calculatedto;
 
 import lombok.*;
 

@@ -1,7 +1,7 @@
 package com.bank.mspayment.entity;
 
-import com.bank.mspayment.config.CustomLocalDateDeserializer;
-import com.bank.mspayment.config.CustomLocalDateSerializer;
+import com.bank.mspayment.config.json.CustomLocalDateDeserializer;
+import com.bank.mspayment.config.json.CustomLocalDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,5 @@ public class Payment {
     private Double total;
 
     @Column(name = "CREATED_DATE", nullable = false)
-    @JsonDeserialize(using = CustomLocalDateDeserializer.class)
-    @JsonSerialize(using = CustomLocalDateSerializer.class)
     private LocalDateTime createdDate;
 }

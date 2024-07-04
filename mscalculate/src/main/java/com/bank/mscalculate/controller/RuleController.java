@@ -1,13 +1,11 @@
 package com.bank.mscalculate.controller;
 
-import com.bank.mscalculate.dto.CalculateRequestDTO;
-import com.bank.mscalculate.dto.CalculateResponseDTO;
-import com.bank.mscalculate.dto.RuleRequestDTO;
-import com.bank.mscalculate.dto.RuleResponseDTO;
+import com.bank.mscalculate.dto.calculatedto.CalculateRequestDTO;
+import com.bank.mscalculate.dto.calculatedto.CalculateResponseDTO;
+import com.bank.mscalculate.dto.ruledto.RuleRequestDTO;
+import com.bank.mscalculate.dto.ruledto.RuleResponseDTO;
 import com.bank.mscalculate.dto.mapper.RuleMapperService;
-import com.bank.mscalculate.entity.Protocol;
 import com.bank.mscalculate.entity.Rule;
-import com.bank.mscalculate.entity.UpdatePoints;
 import com.bank.mscalculate.services.RuleServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

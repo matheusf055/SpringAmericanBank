@@ -12,14 +12,14 @@ import java.util.Base64;
 import java.util.UUID;
 
 @Service
-public class AwsS3Service {
+public class AwsS3Services {
 
     private final S3Client s3Client;
 
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
 
-    public AwsS3Service(S3Client s3Client) {
+    public AwsS3Services(S3Client s3Client) {
         this.s3Client = s3Client;
     }
 

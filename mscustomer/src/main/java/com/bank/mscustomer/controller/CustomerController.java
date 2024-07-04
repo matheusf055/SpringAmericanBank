@@ -4,7 +4,7 @@ import com.bank.mscustomer.dto.CustomerRequestDTO;
 import com.bank.mscustomer.dto.CustomerResponseDTO;
 import com.bank.mscustomer.dto.mapper.CustomerMapperService;
 import com.bank.mscustomer.entity.Customer;
-import com.bank.mscustomer.services.AwsS3Service;
+import com.bank.mscustomer.services.AwsS3Services;
 import com.bank.mscustomer.services.CustomerServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -28,7 +28,7 @@ public class CustomerController {
 
     private final CustomerServices customerServices;
     private final CustomerMapperService customerMapperService;
-    private final AwsS3Service awsS3Service;
+    private final AwsS3Services awsS3Services;
 
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
@@ -45,7 +45,7 @@ public class CustomerController {
 
         if (requestDTO.getPhoto() != null && !requestDTO.getPhoto().isEmpty()) {
             String key = "photos/" + customer.getId() + ".jpg";
-            awsS3Service.uploadBase64Photo(requestDTO.getPhoto(), key);
+            awsS3Services.uploadBase64Photo(requestDTO.getPhoto(), key);
             customer.setUrlPhoto("https://s3.amazonaws.com/" + bucketName + "/" + key);
         }
 

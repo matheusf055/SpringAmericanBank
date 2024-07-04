@@ -20,22 +20,20 @@ spring:
     password: guest
 
 server:
-  port: 0
+  port: 8081
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-  instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value} }
 
 aws:
   region: us-west-1
   s3:
     bucket-name: american-bank-bucket
-    access-key: ASIA47CRYHBAGRLEITOF
-    secret-key: fRiuS+doSj1zn+VifWz7j6XZQgDLIVrrvAtOglAR
-    sessionToken: IQoJb3JpZ2luX2VjEN3//////////wEaCXVzLWVhc3QtMSJHMEUCIH3AfB7GvDn0WBqRH7S5p06YxdEjFBTbnmlgsBreegOdAiEAlvRweqmAw5E/g/x8dV7vcFts0SNAn98wKhNIG+u+fLcqqAMIlv//////////ARAAGgw4OTEzNzcxNzA0OTYiDNk+3qHQv9/lDgkLfSr8Ar3hHO1qpPeL/iSt8C5f+95KHYE3dU9ilO7leNOi/xCo0p9rkmZDyeV4hUJlvbgg6+qG6SImhfNhbVIkXC/urQiFAIKuxmfCaiNCTybsrN3gc/Ixn4EHdlgWjqJtsYC+vUHqnEtrrPMpy+o2QWSpEvfP5nC2bZAuyylR4V5/K/fJJssFImtsKV6nIwXPvu5Oe0QNtUoPTm85sbKI06crgxa49b/PqY9le2zQlMyRZNDiGAgGcSdU+n5+6rBkwAJJC4rKybpztQL5Djpf1z9WtE5i9i1sX2xi0hXu8YEKwt/aL4W5drBLJ1cM96KZNQOYeL1XQ/qpTIGcINFWejMvkctxMzLvqzMVVNs7aKZVuQexD36gE4mpBmQ3ET0vW6ZtHWiO0NBVwopTxvqGDH8XpNc4jtdDDdSvQ3/JvSZR2HyG9us4CHkWt7LyM+0Dk8J0MXZ0v7SBGWfFPuemACbEeXvo7BDUNJZF6gVnduFMU/SBFcb7O0dPxaoMKst2MMDplrQGOqYBIAR8yz0GCFz/uu6ZBiM1Sljn1E0jCcVjYGu3F0Nu8hjfXnAzF765ViTXldPpdXzOTq0q15HA6ytWUAaFsPpcG2DAuC1/2M/+/ExisMqSq7HmxkJ1MoVjXPHaukG73hBKdxVMIG+dxedWogRD3nRQ9u5BwL4OUOZSp/gtgWDnbvfmVNQ3Ce9U5LpN4dbBtZ9wRJtsWPU3g7pIfX5n6nuDqNJVKyqqNQ==
+    access-key: ASIA47CRYHBAKRWYR3ZH
+    secret-key: 2JeZ5A5mE2KN3XHtyU0dampX2NRqrGUMjWJv4w8I
+    sessionToken: IQoJb3JpZ2luX2VjEPb//////////wEaCXVzLWVhc3QtMSJGMEQCIF2X+4H+GYYE2uLiRqKutQAChGdxo9mp5ZHu4skzxcsoAiBp4wW/x7nDB2V4ryx+Lrn7vD036jvPXLshDMCckSHgmCqoAwiv//////////8BEAAaDDg5MTM3NzE3MDQ5NiIMJayRDIHWtCGb8mXsKvwCt6Idiq5IL04jC9aW3d6kFRS5LaJ0sl+9tOEFhgzpAtdAr30GxTnndtH+zCLrEoSBqej9bBEshAFtYf8cucXpfT9hQ0uQUauw5hfaECpK9OzjYNhWpV5GgzolQe0tzAdbXGruEz8aHroMhtdiMbeQnMT1/mTIgmTGnKOMnvPUSL1m9hwNL+BW2dZiGiI2PHl+rKMITWFmCBjcG7Hh7KaXzdf9AUfWlDXpylE9OJZinFAz20/75NdHprL3FSECa/pPGSdTBmBruLN/e4KioHjQnqHqdrk1eAEhf6A/k8d+fpDPHXUQ+LcUkt1WCwtStFbOXOdbergeDYBdS6fqnzjYTsN+917exUGdiAdEWV//9FPqnW237rut2JjTjnXn8qv51nLS5DVO8EmM6MIIxhn/vUGxV/+BNHIjegd3grm3PSF7dZ0pMhvnPpAmOGKNg7iDquFZbfyOIZ0QsrZGqREdxJ13udEx4GBE7xR3IN0diZTiWT0UGp2xlDwrJIIw1KectAY6pwEybD6p1DR284ecVca3A+1YcV3r9BfEcEo613Ldi6xxJVrEIo5laYDwtwH/0N6U+lGOLzwt73wF8UPHDj7xzkDN7pOYNjN1Rvoc2GaBz9mdbCd7Uvh+ETxeH/nvnKrRPh0MvVNI9WtXturUBz5DPjAHCIm9qxbo6oXeakTiBX4+toH48YA2Hc/yBA1nRJ3xNov/iXwj4F+L/kvGnVERlFvykFfgnE072Q==
 
 mq:
   queues:

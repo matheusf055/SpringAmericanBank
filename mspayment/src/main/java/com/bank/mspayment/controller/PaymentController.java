@@ -4,7 +4,8 @@ import com.bank.mspayment.dto.mapper.PaymentMapperService;
 import com.bank.mspayment.dto.paymentdto.PaymentRequestDTO;
 import com.bank.mspayment.dto.paymentdto.PaymentResponseDTO;
 
-import com.bank.mspayment.services.PaymentService;
+import com.bank.mspayment.entity.Payment;
+import com.bank.mspayment.services.PaymentServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,7 +22,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PaymentController {
 
-    private final PaymentService paymentService;
+    private final PaymentServices paymentServices;
     private final PaymentMapperService paymentMapperService;
 
     @PostMapping
@@ -31,7 +33,7 @@ public class PaymentController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
     public ResponseEntity<PaymentResponseDTO> processPayment(@RequestBody PaymentRequestDTO paymentRequest) {
-        PaymentResponseDTO paymentResponse = paymentService.processPayment(paymentRequest);
+        PaymentResponseDTO paymentResponse = paymentServices.processPayment(paymentRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentResponse);
     }
 
@@ -45,8 +47,14 @@ public class PaymentController {
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
     public ResponseEntity<PaymentResponseDTO> findById(@PathVariable UUID id) {
-        return paymentService.findById(id)
+        return paymentServices.findById(id)
                 .map(payment -> ResponseEntity.ok(paymentMapperService.toResponseDTO(payment)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Payment>> getPaymentsByCustomerId(@PathVariable Long userId) {
+        List<Payment> payments = paymentServices.findByCustomerId(userId);
+        return new ResponseEntity<>(payments, HttpStatus.OK);
     }
 }
