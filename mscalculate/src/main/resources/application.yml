@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: mscalculate
+
+  datasource:
+    url: jdbc:mysql://american-bank-instance.cf8u88y8c5n9.us-west-1.rds.amazonaws.com:3306/american_bank?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+mq:
+  queues:
+    update-points: update-points
