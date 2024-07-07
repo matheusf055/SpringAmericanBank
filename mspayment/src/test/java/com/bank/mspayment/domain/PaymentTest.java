@@ -3,10 +3,7 @@ package com.bank.mspayment.domain;
 import com.bank.mspayment.entity.Payment;
 import org.junit.jupiter.api.Test;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
-import java.util.Locale;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;

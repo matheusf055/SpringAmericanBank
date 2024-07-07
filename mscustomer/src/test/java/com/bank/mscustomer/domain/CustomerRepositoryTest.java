@@ -2,14 +2,21 @@ package com.bank.mscustomer.domain;
 
 import static com.bank.mscustomer.common.CustomerConstants.CUSTOMER;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.bank.mscustomer.entity.Customer;
 import com.bank.mscustomer.repository.CustomerRepository;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
@@ -22,7 +29,14 @@ import java.util.Optional;
 public class CustomerRepositoryTest {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final LocalDate birthDate = LocalDate.parse("01/01/2000", formatter);
+
+    private Validator validator;
+
+    @BeforeEach
+    public void setUp() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -40,21 +54,27 @@ public class CustomerRepositoryTest {
     }
 
     @Test
-    public void createCustomer_WithInvalidData_ThrowException(){
-        Customer emptyCustomer = new Customer();
-        Customer invalidCustomer = new Customer( 1L, "" , "" , "", birthDate, "", "");
+    public void createCustomer_WithInvalidData_ThrowException() {
+        Customer invalidCustomer = new Customer(1L, "", "", "", LocalDate.now(), "", "");
 
-        assertThatThrownBy(() -> customerRepository.save(emptyCustomer));
-        assertThatThrownBy(() -> customerRepository.save(invalidCustomer));
+        assertThatThrownBy(() -> {
+            validator.validate(invalidCustomer);
+            customerRepository.save(invalidCustomer);
+            testEntityManager.flush();
+        }).isInstanceOf(ConstraintViolationException.class);
     }
 
     @Test
-    public void createCustomer_WithExistingCredentials_ThrowsException(){
-        Customer customer = testEntityManager.merge(CUSTOMER);
-        testEntityManager.detach(customer);
-        customer.setId(null);
+    public void createCustomer_WithExistingCredentials_ThrowsException() {
+        Customer existingCustomer = testEntityManager.find(Customer.class, 1L);
 
-        assertThatThrownBy(() -> customerRepository.save(customer));
+        Customer newCustomer = new Customer(null, existingCustomer.getCpf(),
+                existingCustomer.getName(), existingCustomer.getGender(),
+                existingCustomer.getBirthdate(), existingCustomer.getEmail(),
+                existingCustomer.getUrlPhoto());
+
+        assertThatThrownBy(() -> customerRepository.save(newCustomer))
+                .isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @Test
@@ -68,10 +88,10 @@ public class CustomerRepositoryTest {
     }
 
     @Test
-    public void getCustomer_ByUnexistingId_ReturnsCustomer(){
-        Optional<Customer> customerOptional = customerRepository.findById(1L);
+    public void getCustomer_ByUnexistingId_ReturnsEmptyOptional() {
+        Optional<Customer> customerOptional = customerRepository.findById(10L);
 
-        assertThat(customerOptional).isEmpty();
+        assertFalse(customerOptional.isPresent());
     }
 
     @Test

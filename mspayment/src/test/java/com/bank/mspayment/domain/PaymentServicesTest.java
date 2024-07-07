@@ -66,24 +66,24 @@ public class PaymentServicesTest {
         UUID paymentId = UUID.randomUUID();
         Payment payment = new Payment(paymentId, 1L, 2L, 100.0, LocalDateTime.now());
 
-        when(paymentRepository.findById(paymentId.toString())).thenReturn(Optional.of(payment));
+        when(paymentRepository.findById(paymentId)).thenReturn(Optional.of(payment));
 
         Optional<Payment> foundPayment = paymentServices.findById(paymentId);
 
         assertThat(foundPayment).isPresent();
         assertThat(foundPayment.get().getId()).isEqualTo(paymentId);
-        verify(paymentRepository, times(1)).findById(paymentId.toString());
+        verify(paymentRepository, times(1)).findById(paymentId);
     }
 
     @Test
     public void findById_NonExistingId_ReturnsEmptyOptional() {
         UUID nonExistingId = UUID.randomUUID();
 
-        when(paymentRepository.findById(nonExistingId.toString())).thenReturn(Optional.empty());
+        when(paymentRepository.findById(nonExistingId)).thenReturn(Optional.empty());
 
         Optional<Payment> foundPayment = paymentServices.findById(nonExistingId);
 
         assertThat(foundPayment).isEmpty();
-        verify(paymentRepository, times(1)).findById(nonExistingId.toString());
+        verify(paymentRepository, times(1)).findById(nonExistingId);
     }
 }

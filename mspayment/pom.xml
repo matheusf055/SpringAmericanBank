@@ -136,10 +136,9 @@
                         <exclude>com/bank/mspayment/dto/paymentdto/PaymentResponseDTO.class</exclude>
                         <exclude>com/bank/mspayment/dto/calculatedto/CalculateRequestDTO.class</exclude>
                         <exclude>com/bank/mspayment/dto/calculatedto/CalculateResponseDTO.class</exclude>
+                        <exclude>com/bank/mspayment/config/json/CustomLocalDateDeserializer.class</exclude>
+                        <exclude>com/bank/mspayment/config/json/CustomLocalDateSerializer.class</exclude>
                         <exclude>com/bank/mspayment/dto/mapper/PaymentMapperService.class</exclude>
-                        <exclude>com/bank/mspayment/dto/mapper/ModelMapperConfig.class</exclude>
-                        <exclude>com/bank/mspayment/config/CustomLocalDateDeserializer.class</exclude>
-                        <exclude>com/bank/mspayment/config/CustomLocalDateSerializer.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

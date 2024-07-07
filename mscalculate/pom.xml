@@ -129,14 +129,13 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <configuration>
                     <excludes>
-                        <exclude>com/bank/mscalculate/config/OpenApiConfig.class</exclude>
                         <exclude>com/bank/mscalculate/MscalculateApplication.class</exclude>
-                        <exclude>com/bank/mscalculate/dto/CalculateRequestDTO.class</exclude>
-                        <exclude>com/bank/mscalculate/dto/CalculateResponseDTO.class</exclude>
-                        <exclude>com/bank/mscalculate/dto/RuleRequestDTO.class</exclude>
-                        <exclude>com/bank/mscalculate/dto/RuleResponseDTO.class</exclude>
+                        <exclude>com/bank/mscalculate/dto/calculatedto/CalculateRequestDTO.class</exclude>
+                        <exclude>com/bank/mscalculate/dto/calculatedto/CalculateResponseDTO.class</exclude>
+                        <exclude>com/bank/mscalculate/dto/ruledto/RuleRequestDTO.class</exclude>
+                        <exclude>com/bank/mscalculate/dto/ruledto/RuleResponseDTO.class</exclude>
                         <exclude>com/bank/mscalculate/dto/mapper/RuleMapperService.class</exclude>
-                        <exclude>com/bank/mscalculate/dto/mapper/ModelMapperConfig.class</exclude>
+                        <exclude>com/bank/mscalculate/config/queue/UpdatePointsPublisher.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

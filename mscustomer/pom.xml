@@ -158,8 +158,9 @@
                         <exclude>com/bank/mscustomer/dto/CustomerRequestDTO.class</exclude>
                         <exclude>com/bank/mscustomer/dto/CustomerResponseDTO.class</exclude>
                         <exclude>com/bank/mscustomer/dto/mapper/CustomerMapperService.class</exclude>
-                        <exclude>com/bank/mscustomer/config/CustomLocalDateDeserializer.class</exclude>
-                        <exclude>com/bank/mscustomer/config/CustomLocalDateSerializer.class</exclude>
+                        <exclude>com/bank/mscustomer/config/json/CustomLocalDateDeserializer.class</exclude>
+                        <exclude>com/bank/mscustomer/config/json/CustomLocalDateSerializer.class</exclude>
+                        <exclude>com/bank/mscustomer/config/mqueue/UpdatePointsSubscriber.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

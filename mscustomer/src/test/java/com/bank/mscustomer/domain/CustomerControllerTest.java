@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.bank.mscustomer.controller.CustomerController;
 import com.bank.mscustomer.dto.mapper.CustomerMapperService;
 import com.bank.mscustomer.entity.Customer;
+import com.bank.mscustomer.services.AwsS3Services;
 import com.bank.mscustomer.services.CustomerServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,9 @@ public class CustomerControllerTest {
 
     @MockBean
     private CustomerMapperService customerMapperService;
+
+    @MockBean
+    private AwsS3Services awsS3Services;
 
     @Test
     public void createCustomer_WithValidData_ReturnsCreated() throws Exception {
