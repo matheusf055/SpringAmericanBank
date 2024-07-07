@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: mspayment
+
+  datasource:
+    url: jdbc:mysql://american-bank-instance.cf8u88y8c5n9.us-west-1.rds.amazonaws.com:3306/american_bank?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka

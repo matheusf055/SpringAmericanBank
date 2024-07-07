@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: mscustomer
+
+  datasource:
+    url: jdbc:mysql://american-bank-instance.cf8u88y8c5n9.us-west-1.rds.amazonaws.com:3306/american_bank?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+aws:
+  region: us-west-1
+  s3:
+    bucket-name: american-bank-bucket
+    access-key: ASIA47CRYHBAIT4SU3H2
+    secret-key: S18oCv3mT8DRQVFoFZe9FGk2Vb5EjbGeTUYeHMzO
+    sessionToken: IQoJb3JpZ2luX2VjEDcaCXVzLWVhc3QtMSJGMEQCIFbfuxVDSGvmnqEcztRIcCcNTOmUI2lM03YyIi65SFw/AiAYWN885w6cdG+q6+Wr+lhWyjKeNuCDcA8VrVaaOd+m7iqoAwjw//////////8BEAAaDDg5MTM3NzE3MDQ5NiIMPU1p+O9TXQdZdkLXKvwCcFPwi//bMKfpJsf9+UMkTwJadofc8+JMIIWJgK0duf5dEdZiolkLG8F05y1uiwdO/F4qOhSDP55T0WOK4TuLgojwVRZxKLx3r/hjrLm6anT2I4a/FeMaz2aRGyeR+NxYIJ6VNC7mhiv1fmAQQ0AXtFnB9gklNsxUMJxRv4wJeeJusUMnW7fmPmnrjjvr2ONUDcqB8YgqSnkvlUMSWMRC81l260fWdBSR/luXsqYDePfmlqqpjjCI9RLVunHgsty+iB7q+cVZUQOG3mM0lPTcIW1B0D/NO+9LCcE7OikwJHfASY1f9xTw+v/rHqMsaGJllwGEboLI5cyrUeSHmcePSGaG67r3Wm0BvaEOR2boYuyE8kjD7lXommUXCV8qr14vBlJDkkQvhdVHnai6RU58GkxG8easLLHZWIg5JHkbsqJA/yd08wBwarA2LgLOIBW1NY4b5NdfPTVoAJZFNSJc7C2GeIGhaXS9Bwoy+pG+KckDjLT+/0rGfUDeS0Qw3dWqtAY6pwFY5MudjWY4S57/RKt9bDTHTkBmeXzzzOzKWN6XsCXPuxCd/TamlaHyIKsdvx8VWqJt1hUtIjoxiZt9khnat2ntMTVfAhBon2y5OUlItMs5TlL3kB5V0TXUP9eX54jdnd/DeIQDelfButSHdm2MAbA8ZGQtMLZ0FfNFZYgt6+agr/Al0JMnBhYg1XV7DCcvIPfIKtcmxu5pbAPZp49Sx6UmDb1g6TBukg==
+
+mq:
+  queues:
+    update-points: update-points
