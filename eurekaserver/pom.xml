@@ -32,6 +32,10 @@
     </properties>
 
     <dependencies>
+<<<<<<< HEAD
+=======
+
+>>>>>>> improvements
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
