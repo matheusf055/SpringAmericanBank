@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+
+  eureka-server:
+    build:
+      context: ./eurekaserver
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - bank
+
+  mscustomer:
+    build:
+      context: ./mscustomer
+      dockerfile: Dockerfile
+    container_name: mscustomer
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://american-bank-instance.cf8u88y8c5n9.us-west-1.rds.amazonaws.com:3306/american_bank?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    networks:
+      - bank
+
+  mscalculate:
+    build:
+      context: ./mscalculate
+      dockerfile: Dockerfile
+    container_name: mscalculate
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://american-bank-instance.cf8u88y8c5n9.us-west-1.rds.amazonaws.com:3306/american_bank?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    networks:
+      - bank
+
+  mspayment:
+    build:
+      context: ./mspayment
+      dockerfile: Dockerfile
+    container_name: mspayment
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eureka-server
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://american-bank-instance.cf8u88y8c5n9.us-west-1.rds.amazonaws.com:3306/american_bank?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root1234
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    networks:
+      - bank
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - bank
+
+networks:
+  bank:
+    driver: bridge
