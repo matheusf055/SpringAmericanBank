@@ -4,6 +4,7 @@ import com.bank.mscustomer.config.json.CustomLocalDateDeserializer;
 import com.bank.mscustomer.config.json.CustomLocalDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ public class CustomerRequestDTO {
 
     @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     private String photo;

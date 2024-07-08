@@ -56,7 +56,7 @@ public class PaymentServicesTest {
         PaymentResponseDTO responseDTO = paymentServices.processPayment(requestDTO);
 
         assertThat(responseDTO.getCustomerId()).isEqualTo(requestDTO.getCustomerId());
-        assertThat(responseDTO.getPoints()).isEqualTo(calculateResponseDTO.getTotal());
+        assertThat(responseDTO.getTotal()).isEqualTo(calculateResponseDTO.getTotal());
         verify(paymentRepository, times(1)).save(any(Payment.class));
         verify(calculateServiceClient, times(1)).calculatePoints(calculateRequestDTO);
     }

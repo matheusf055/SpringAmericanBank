@@ -37,7 +37,7 @@ public class PaymentControllerTest {
     @Test
     public void processPayment_ValidRequest_ReturnsCreated() {
         PaymentRequestDTO requestDTO = new PaymentRequestDTO(1L, 2L, 100.0);
-        PaymentResponseDTO responseDTO = new PaymentResponseDTO(1L, 200); // Exemplo de pontos calculados
+        PaymentResponseDTO responseDTO = new PaymentResponseDTO(1L, 200.0);
 
         when(paymentServices.processPayment(any(PaymentRequestDTO.class))).thenReturn(responseDTO);
 
@@ -51,7 +51,7 @@ public class PaymentControllerTest {
     public void findById_ExistingId_ReturnsPaymentResponse() {
         UUID paymentId = UUID.randomUUID();
         Payment payment = new Payment(paymentId, 1L, 2L, 100.0, LocalDateTime.now());
-        PaymentResponseDTO responseDTO = new PaymentResponseDTO(payment.getCustomerId(), 200); // Exemplo de pontos calculados
+        PaymentResponseDTO responseDTO = new PaymentResponseDTO(payment.getCustomerId(), 200.0);
 
         when(paymentServices.findById(paymentId)).thenReturn(Optional.of(payment));
         when(paymentMapperService.toResponseDTO(payment)).thenReturn(responseDTO);

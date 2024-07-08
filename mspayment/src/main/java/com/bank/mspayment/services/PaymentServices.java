@@ -52,6 +52,6 @@ public class PaymentServices {
 
         int totalPoints = calculateResponse.getTotal();
 
-        return new PaymentResponseDTO(paymentRequest.getCustomerId(), totalPoints);
+        return new PaymentResponseDTO(paymentRequest.getCustomerId(), (double) totalPoints);
     }
 }

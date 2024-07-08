@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class PaymentResponseDTO {
 
     private Long customerId;
-    private int points;
+    private Double total;
 }

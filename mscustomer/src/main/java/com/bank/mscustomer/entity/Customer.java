@@ -39,6 +39,7 @@ public class Customer {
 
     @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
 
     private int points = 0;
